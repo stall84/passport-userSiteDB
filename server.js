@@ -40,3 +40,10 @@ app.listen(PORT, () => {
 
 // GitHub login auth route
 app.get('/github-auth', passport.authenticate('github'))
+
+// Working on serving front-end views/components
+app.get('/home', (req,res,next) => {
+    res.render('landing1', {
+        title: 'UserDB-Site'
+    })
+})
