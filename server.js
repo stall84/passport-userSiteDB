@@ -42,8 +42,19 @@ app.listen(PORT, () => {
 app.get('/github-auth', passport.authenticate('github'))
 
 // Working on serving front-end views/components
+
+app.get('/', (req,res,next) => {
+    res.redirect('/home')
+})
+
 app.get('/home', (req,res,next) => {
-    res.render('landing1', {
+    res.render('homepage', {
         title: 'UserDB-Site'
+    })
+})
+
+app.get('/register', (req,res,next) => {
+    res.render('registerPage', {
+        title: 'User Registration'
     })
 })
