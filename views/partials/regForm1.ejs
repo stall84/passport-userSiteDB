@@ -1,17 +1,17 @@
 <form action="/register/submit" method="POST">
   <div class="form-group">
     <label for="InputFullName">Name</label>
-    <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp" placeholder="Enter full name">
+    <input type="text" name="name" class="form-control" id= aria-describedby="nameHelp" placeholder="Enter full name">
     <small id="nameHelp" class="form-text text-muted">First and Last.</small>
   </div>
   <div class="form-group">
     <label for="InputEmail1">Email address</label>
-    <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="InputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" name="password" class="form-control" id="InputPassword" placeholder="Password">
     <small id="emailHelp" class="form-text text-muted">Please pick password with at least 1 number and 1 uppercase character.</small>
   </div>
   <button type="submit" class="btn btn-info">Submit</button>

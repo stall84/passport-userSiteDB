@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true} ));
+app.use(bodyParser.urlencoded({ extended: false } ));
 app.use(express.static(__dirname + '/public'));
 app.use(session({secret: process.env.CLIENT_SECRET}));
 app.use(passport.initialize());
@@ -58,3 +58,22 @@ app.get('/register', (req,res,next) => {
         title: 'User Registration'
     })
 })
+
+app.post('/register/submit', (req,res,next) => {
+    
+    const userName = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    
+    console.log(userName, email, password);
+
+    // test to see if i could render out the input fields after entered
+    res.render('renderTest', {
+        user_name: userName,
+        email: email,
+        password: password
+    })
+})
+
+
