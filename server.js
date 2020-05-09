@@ -14,6 +14,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(bodyParser.json());
+// Got form data finally submitting object data back to routes after setting body-parser extended: to false below
 app.use(bodyParser.urlencoded({ extended: false } ));
 app.use(express.static(__dirname + '/public'));
 app.use(session({secret: process.env.CLIENT_SECRET}));
