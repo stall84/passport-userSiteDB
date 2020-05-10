@@ -52,6 +52,7 @@ app.get('/', (req,res,next) => {
     res.redirect('/home')
 })
 
+// Set the main 'home' route with view
 app.get('/home', (req,res,next) => {
     res.render('homepage', {
         title: 'UserDB-Site'
@@ -65,7 +66,9 @@ app.get('/register', (req,res,next) => {
 })
 
 app.get('/login', (req,res,next) => {
-    res.render('login')
+    res.render('login', {
+        title: 'Login-Page'
+    })
 })
 
 app.post('/register/submit', (req,res,next) => {
@@ -89,6 +92,13 @@ app.post('/register/submit', (req,res,next) => {
         console.log(`There was a problem: ${err}`);
     })
     
+})
+
+// logout route
+app.get('/logout', (req,res,next) => {
+    req.logout();
+    res.redirect('/');
+
 })
 
 
