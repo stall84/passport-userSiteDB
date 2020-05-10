@@ -1,11 +1,15 @@
 
 const express = require('express');
+const db = require('./models');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 // requiring passport and GitHub 'strategy'
 const passport = require('passport');
 const GithubStrategy = require('passport-github');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
+const saltRounds = 2;
+
 const PORT = process.env.PORT;
 
 
@@ -60,21 +64,39 @@ app.get('/register', (req,res,next) => {
     })
 })
 
+app.get('/login', (req,res,next) => {
+    res.render('login')
+})
+
 app.post('/register/submit', (req,res,next) => {
     
-    const userName = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
-    
-    
-    console.log(userName, email, password);
+    //const newUser = req.body
 
-    // test to see if i could render out the input fields after entered
-    res.render('renderTest', {
-        user_name: userName,
-        email: email,
-        password: password
+    const userName = req.body.fullName;
+    const email = req.body.email;
+    //const password = req.body.password
+    const password = bcrypt.hash(req.body.password, saltRounds);
+
+    //bcrypt.hash(password, saltRounds, (err))
+    db.Users.create({ fullName:userName, email:email, password:password }).then(newDBUser => {
+        if (newDBUser) {
+            res.render('renderTest', {
+                user_name: userName,
+                email: email,
+                password: password
+            })
+        }
+    }).catch(err => {
+        console.log(`There was a problem: ${err}`);
     })
+    
+    
+    
+
+
+    
+    
+    
 })
 
 
