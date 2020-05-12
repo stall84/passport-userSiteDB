@@ -73,16 +73,17 @@ app.get('/login', (req,res,next) => {
 
 app.post('/register/submit', (req,res,next) => {
 
-    const fullName = req.body.fullName;
+    const username = req.body.username;
     const email = req.body.email;
     
     // Finally got the hash password to go up to the DB .. had to put the create function inside the bcrypt promise, because it does return a promise
 
     bcrypt.hash(req.body.password, saltRounds).then(hashedPass => {
-        db.Users.create({ fullName:fullName, email:email, password:hashedPass }).then(newDBUser => {
+        db.Users.create({ username:username, email:email, password:hashedPass }).then(newDBUser => {
             if (newDBUser) {
                 res.render('renderTest', {
-                    full_name: fullName,
+                    title: 'Successfully Registered',
+                    username: username,
                     email: email,
                     password: '**RECORDED**'
                 })
